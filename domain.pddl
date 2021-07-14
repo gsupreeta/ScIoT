@@ -11,6 +11,7 @@
       (user_input ?u)
       (temp ?t)
       (fan ?f)
+      (human ?h)
     )
 
     (:action temperature-same
@@ -20,14 +21,14 @@
     )
         
     (:action temp-different-user-input
-      :parameters (?s ?u ?f)
-      :precondition (and (user_input ?u) (sensor_input ?s) (fan ?f))
+      :parameters (?s ?u ?f ?h)
+      :precondition (and (user_input ?u) (sensor_input ?s) (fan ?f) (human ?h))
       :effect (not(fan ?f))
     )
     
     (:action temp-different-sensor-input
-      :parameters (?s ?u ?f)
-      :precondition (and (user_input ?u) (sensor_input ?s) (not(fan ?f)))
+      :parameters (?s ?u ?f ?h)
+      :precondition (and (user_input ?u) (sensor_input ?s) (not(fan ?f)) (human ?h))
       :effect (fan ?f)
     )
 
