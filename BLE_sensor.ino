@@ -2,6 +2,7 @@
 #include <Arduino_APDS9960.h>
 
 float temp_sensed;
+float humidity_sensed;
 int gesture;
 
 void setup()
@@ -32,6 +33,12 @@ for (int i = 0; i < 1000; i++)
 
 //Temperature monitoring
 temp_sensed = HTS.readTemperature();
+//Serial.print("Temperature:");
 Serial.println(temp_sensed);
 Serial1.println(temp_sensed);
+
+humidity_sensed = HTS.readHumidity();
+//Serial.print("Humidity:");
+Serial.println(humidity_sensed);
+Serial1.println(humidity_sensed);
 }
