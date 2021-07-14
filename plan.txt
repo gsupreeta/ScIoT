@@ -1,0 +1,1 @@
+(temp-different-user-input sensor1 user1 fan1)
