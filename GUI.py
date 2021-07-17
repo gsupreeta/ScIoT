@@ -46,6 +46,8 @@ def on_connect(client, userdata, flags, rc):
     client.subscribe("CoreElectronics/topic")
     client.subscribe("HDU/Building1/Monitoring/Temperature")
     client.subscribe("HDU/Building1/Monitoring/Humidity")
+    client.subscribe("HDU/Building1/Monitoring/Emergency")
+    client.subscribe("HDU/Building1/Monitoring/OverCrowd")
     
 
 # The callback for when a PUBLISH message is received from the server.
@@ -68,30 +70,54 @@ def on_message(client, userdata, msg):
         print("TOPIC HUMIDITY")
         Global_Sub_Temp_Value = Sub_Temp_Value
         topic2.config(text=Sub_Temp_Value)
+        
+    if msg.topic == "HDU/Building1/Monitoring/Emergency":
+        print("TOPIC Emergency Indication")
+        if msg.payload == b'1':
+            led.to_green()
+            
+        
+        if msg.payload == b'0':
+            led.to_grey()
+
+        
+        
+    if msg.topic == "HDU/Building1/Monitoring/OverCrowd":
+        print("TOPIC Emergency Indication")
+        if msg.payload == b'1':
+            led1.to_green()
+            
+        
+        if msg.payload == b'0':
+            led1.to_grey()
+
+  
+
+
      
         
-    if msg.payload == b'1':
-        print("666")
-        print("Received message Emergency Indication ON ")
-        led.to_green()
-        # Do something
+    # if msg.payload == b'1':
+    #     print("666")
+    #     print("Received message Emergency Indication ON ")
+    #     led.to_green()
+    #     # Do something
         
-    if msg.payload == b'2':
-        print("666")
-        print("Received message Emergency Indication OFF")
-        led.to_grey()
-        # Do something
+    # if msg.payload == b'2':
+    #     print("666")
+    #     print("Received message Emergency Indication OFF")
+    #     led.to_grey()
+    #     # Do something
     
 
-    if msg.payload == b'3':
-        print("Received message OverCrowd Indication ON ")
-        led1.to_green()
-        # Do something else
+    # if msg.payload == b'3':
+    #     print("Received message OverCrowd Indication ON ")
+    #     led1.to_green()
+    #     # Do something else
         
-    if msg.payload == b'4':
-        print("Received message OverCrowd Indication OFF")
-        led1.to_grey()
-        # Do something else
+    # if msg.payload == b'4':
+    #     print("Received message OverCrowd Indication OFF")
+    #     led1.to_grey()
+    #     # Do something else
  
 
 def Graph():
