@@ -1,0 +1,6 @@
+(define (problem TemperatureControl)
+(:domain MaintainTemperature)
+ (:objects Temp1 User1 Sensor1)
+ (:init (temp Temp1) (user_input User1) (sensor_input Sensor1))
+ (:goal (and (not(temp Temp1)) (user_input User1) (sensor_input Sensor1)))
+)
